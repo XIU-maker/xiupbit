@@ -11,17 +11,11 @@ def get_target_price(ticker, k):
     target_price = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_price
 
-def get_target_row1(ticker, l):
+def get_target_row(ticker, r):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_row1 = df.iloc[0]['close'] * l
+    target_row1 = df.iloc[0]['close'] * r
     return target_row1
-
-def get_target_row2(ticker, j):
-    """변동성 돌파 전략으로 매수 목표가 조회"""
-    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_row2 = df.iloc[0]['close'] * j
-    return target_row2
 
 def get_start_time(ticker):
     """시작 시간 조회"""
@@ -57,8 +51,8 @@ while True:
         # 9:00 < 현재 < #8:00:00
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-ENJ", 0.5)
-            target_row1 = get_target_row1("KRW-ENJ", 0.82)
-            target_row2 = get_target_row2("KRW-ENJ", 0.72)
+            target_row1 = get_target_row("KRW-ENJ", 0.82)
+            target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
             if target_price < current_price:
                 krw = get_balance("KRW")
