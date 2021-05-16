@@ -67,9 +67,9 @@ while True:
                     upbit.buy_market_order("KRW-CRE", krw*0.5)
                 
         else:
-            btc = get_balance("CRE")
-            if btc > 0.00009:
-                upbit.sell_market_order("KRW-CRE", btc*0.9995)
+            cre = get_balance("CRE")
+            if cre > 0.00009:
+                upbit.sell_market_order("KRW-CRE", cre*0.9995)
         time.sleep(1)
     except Exception as e:
 

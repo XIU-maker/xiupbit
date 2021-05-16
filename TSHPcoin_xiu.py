@@ -67,9 +67,9 @@ while True:
                     upbit.buy_market_order("KRW-TSHP", krw*0.5)
                 
         else:
-            btc = get_balance("TSHP")
-            if btc > 0.00009:
-                upbit.sell_market_order("KRW-TSHP", btc*0.9995)
+            tshp = get_balance("TSHP")
+            if tshp > 0.00009:
+                upbit.sell_market_order("KRW-TSHP", tshp*0.9995)
         time.sleep(1)
     except Exception as e:
 
