@@ -77,9 +77,9 @@ while True:
             cre = get_balance("CRE")
             if cre > 30:
                 upbit.sell_market_order("KRW-CRE", cre*0.9995)
-        time.sleep(1)
+        time.sleep(5)
     except Exception as e:
 
         
         print(e)
-        time.sleep(1)
+        time.sleep(5)

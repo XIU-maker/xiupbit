@@ -49,7 +49,7 @@ while True:
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
 
         # 9:00 < 현재 < #8:00:00
-        if start_time < now < end_time - datetime.timedelta(seconds=3600):
+        if start_time < now < end_time - datetime.timedelta(seconds=1800):
             target_price = get_target_price("KRW-ENJ", 0.5)
             target_zone = target_price * 1.03
             target_high = target_price * 1.15
@@ -77,9 +77,9 @@ while True:
             cre = get_balance("ENJ")
             if cre > 1:
                 upbit.sell_market_order("KRW-ENJ", cre*0.9995)
-        time.sleep(1)
+        time.sleep(5)
     except Exception as e:
 
         
         print(e)
-        time.sleep(1)
+        time.sleep(5)
