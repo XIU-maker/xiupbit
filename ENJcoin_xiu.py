@@ -54,21 +54,16 @@ while True:
             target_row1 = get_target_row("KRW-ENJ", 0.82)
             target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
-            if target_price < current_price < target_price * 1.03:
+            if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000000:
                     upbit.buy_market_order("KRW-ENJ", krw*0.69)
-            elif target_price * 1.15 < current_price:
-                btc = get_balance("ENJ")
-                if btc > 0.00009:
-                    upbit.sell_market_order("KRW-ENJ", btc*0.9995)
-                
             elif target_row1 > current_price:
                 krw = get_balance("KRW")
                 if target_row2 > current_price:
                     if krw > 1000:
                         upbit.buy_market_order("KRW-ENJ", krw*0.9995)
-                elif krw > 1000:
+                elif krw > 5000000:
                     upbit.buy_market_order("KRW-ENJ", krw*0.5)
                 
         else:
