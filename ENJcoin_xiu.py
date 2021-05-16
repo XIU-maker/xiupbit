@@ -56,11 +56,10 @@ while True:
             target_row1 = get_target_row("KRW-ENJ", 0.82)
             target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
-            if target_price < current_price:
+            if target_price < current_price < target_zone:
                 krw = get_balance("KRW")
-                if current_price < target_zone:
-                    if krw > 8000000:
-                        upbit.buy_market_order("KRW-ENJ", krw*0.69)
+                if krw > 8000000:
+                    upbit.buy_market_order("KRW-ENJ", krw*0.69)
             elif target_row1 > current_price:
                 krw = get_balance("KRW")
                 if target_row2 > current_price:
