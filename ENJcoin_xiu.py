@@ -52,11 +52,11 @@ while True:
         # 9:00 < 현재 < #8:00:00
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-ENJ", 0.5)
-            target_zone = target_price * 1.03
+            # target_zone = target_price * 1.03
             target_row1 = get_target_row("KRW-ENJ", 0.82)
             target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
-            if target_price < current_price < target_zone:
+            if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 8000000:
                     upbit.buy_market_order("KRW-ENJ", krw*0.69)
