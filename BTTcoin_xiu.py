@@ -56,14 +56,14 @@ while True:
             current_price = get_current_price("KRW-BTT")
             if target_price < current_price:
                 krw = get_balance("KRW")
-                if krw > 1000:
+                if krw > 8000000:
                     upbit.buy_market_order("KRW-BTT", krw*0.69)
             elif target_row1 > current_price:
                 krw = get_balance("KRW")
                 if target_row2 > current_price:
                     if krw > 1000:
                         upbit.buy_market_order("KRW-BTT", krw*0.9995)
-                elif krw > 1000:
+                elif krw > 8000000:
                     upbit.buy_market_order("KRW-BTT", krw*0.5)
                 
         else:
