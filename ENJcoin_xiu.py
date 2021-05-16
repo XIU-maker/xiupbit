@@ -9,7 +9,7 @@ def get_target_price(ticker, k, z):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
     target_price = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
-    target_zone = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k * z
+    # target_zone = target_price * 1.03
     return target_price, target_zone
 
 def get_target_row(ticker, r):
@@ -52,7 +52,7 @@ while True:
         # 9:00 < 현재 < #8:00:00
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-ENJ", 0.5)
-            target_zone = get_target_price("KRW-ENJ", 0.5, 1.05) 
+            target_zone = target_price * 1.03
             target_row1 = get_target_row("KRW-ENJ", 0.82)
             target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
