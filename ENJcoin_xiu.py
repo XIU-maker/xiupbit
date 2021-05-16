@@ -69,7 +69,7 @@ while True:
         # 9:00 < 현재 < #8:00:00
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price_ENJ = get_target_price_ENJ("KRW-ENJ", 0.5)
-            target_price_CRE = get_target_price_ENJ("KRW-CRE", 0.5)
+            target_price_CRE = get_target_price_CRE("KRW-CRE", 0.5)
             target_row1_ENJ = get_target_row1_ENJ("KRW-ENJ", 0.82)
             target_row2_ENJ = get_target_row2_ENJ("KRW-ENJ", 0.72)
             current_price_ENJ = get_current_price("KRW-ENJ")
