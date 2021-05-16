@@ -62,7 +62,7 @@ while True:
                     upbit.buy_market_order("KRW-CRE", krw*0.69)
             elif target_high < current_price:
                 cre = get_balance("CRE")
-                if cre > 1:
+                if cre > 30:
                     upbit.sell_market_order("KRW-CRE", cre*0.9995)                
 
             elif target_row1 > current_price:
@@ -75,7 +75,7 @@ while True:
                 
         else:
             cre = get_balance("CRE")
-            if cre > 1:
+            if cre > 30:
                 upbit.sell_market_order("KRW-CRE", cre*0.9995)
         time.sleep(1)
     except Exception as e:
