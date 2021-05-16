@@ -51,25 +51,32 @@ while True:
         # 9:00 < 현재 < #8:00:00
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-ENJ", 0.5)
+            target_zone = target_price * 1.03
+            target_high = target_price * 1.15
             target_row1 = get_target_row("KRW-ENJ", 0.82)
             target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
-            if target_price < current_price:
+            if target_price < current_price < target_zone:
                 krw = get_balance("KRW")
-                if krw > 5000000:
+                if krw > 8000000:
                     upbit.buy_market_order("KRW-ENJ", krw*0.69)
+            elif target_high < current_price:
+                cre = get_balance("ENJ")
+                if cre > 1:
+                    upbit.sell_market_order("KRW-ENJ", cre*0.9995)                
+
             elif target_row1 > current_price:
                 krw = get_balance("KRW")
                 if target_row2 > current_price:
                     if krw > 1000:
                         upbit.buy_market_order("KRW-ENJ", krw*0.9995)
-                elif krw > 5000000:
+                elif krw > 8000000:
                     upbit.buy_market_order("KRW-ENJ", krw*0.5)
                 
         else:
-            btc = get_balance("ENJ")
-            if btc > 0.00009:
-                upbit.sell_market_order("KRW-ENJ", btc*0.9995)
+            cre = get_balance("ENJ")
+            if cre > 1:
+                upbit.sell_market_order("KRW-ENJ", cre*0.9995)
         time.sleep(1)
     except Exception as e:
 
