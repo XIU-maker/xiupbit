@@ -52,6 +52,7 @@ while True:
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-CRE", 0.5)
             target_zone = target_price * 1.03
+            target_high = target_price * 1.15
             target_row1 = get_target_row("KRW-CRE", 0.82)
             target_row2 = get_target_row("KRW-CRE", 0.72)
             current_price = get_current_price("KRW-CRE")
@@ -59,6 +60,11 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 8000000:
                     upbit.buy_market_order("KRW-CRE", krw*0.69)
+            elif target_high < current_price:
+                cre = get_balance("CRE")
+                if cre > 1:
+                    upbit.sell_market_order("KRW-CRE", cre*0.9995)                
+
             elif target_row1 > current_price:
                 krw = get_balance("KRW")
                 if target_row2 > current_price:
@@ -69,7 +75,7 @@ while True:
                 
         else:
             cre = get_balance("CRE")
-            if cre > 0.00009:
+            if cre > 1:
                 upbit.sell_market_order("KRW-CRE", cre*0.9995)
         time.sleep(1)
     except Exception as e:
