@@ -70,9 +70,9 @@ while True:
             doge = get_balance("DOGE")
             if doge > 0.00009:
                 upbit.sell_market_order("KRW-DOGE", doge*0.9995)
-        time.sleep(5)
+        time.sleep(10)
     except Exception as e:
 
         
         print(e)
-        time.sleep(5)
+        time.sleep(10)

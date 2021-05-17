@@ -70,9 +70,9 @@ while True:
             btc = get_balance("STRAX")
             if btc > 0.00009:
                 upbit.sell_market_order("KRW-STRAXJ", btc*0.9995)
-        time.sleep(5)
+        time.sleep(10)
     except Exception as e:
 
         
         print(e)
-        time.sleep(5)
+        time.sleep(10)
