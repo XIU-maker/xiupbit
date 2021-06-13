@@ -44,16 +44,16 @@ while True:
 
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-STRAX", 0.5)
-            current_price = get_current_price("KRW-STRAX")
+            target_price = get_target_price("KRW-TFUEL", 0.5)
+            current_price = get_current_price("KRW-TFUEL")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 1000:
-                    upbit.buy_market_order("KRW-STRAX", krw*0.9995)
+                    upbit.buy_market_order("KRW-TFUEL", krw*0.9995)
         else:
-            strax = get_balance("STRAX")
-            if strax > 0.0008:
-                upbit.sell_market_order("KRW-STRAX", strax*0.9995)
+            tfuel = get_balance("TFUEL")
+            if tfuel > 0.001:
+                upbit.sell_market_order("KRW-TFUEL", tfuel*0.9995)
         time.sleep(10)
     except Exception as e:
         print(e)

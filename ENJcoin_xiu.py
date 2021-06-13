@@ -11,12 +11,6 @@ def get_target_price(ticker, k):
     target_price = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_price
 
-def get_target_row(ticker, r):
-    """변동성 돌파 전략으로 매수 목표가 조회"""
-    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_row = df.iloc[0]['close'] * r
-    return target_row
-
 def get_start_time(ticker):
     """시작 시간 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=1)
@@ -45,41 +39,22 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-ENJ") #9:00
+        start_time = get_start_time("KRW-BTC") #9:00
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
 
-        # 9:00 < 현재 < #8:00:00
-        if start_time < now < end_time - datetime.timedelta(seconds=1800):
+        # 9:00 < 현재 < #8:59:50
+        if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-ENJ", 0.5)
-            target_zone = target_price * 1.03
-            target_high = target_price * 1.15
-            target_row1 = get_target_row("KRW-ENJ", 0.82)
-            target_row2 = get_target_row("KRW-ENJ", 0.72)
             current_price = get_current_price("KRW-ENJ")
-            if target_price < current_price < target_zone:
+            if target_price < current_price:
                 krw = get_balance("KRW")
-                if krw > 8000000:
-                    upbit.buy_market_order("KRW-ENJ", krw*0.69)
-            elif target_high < current_price:
-                cre = get_balance("ENJ")
-                if cre > 1:
-                    upbit.sell_market_order("KRW-ENJ", cre*0.9995)                
-
-            elif target_row1 > current_price:
-                krw = get_balance("KRW")
-                if target_row2 > current_price:
-                    if krw > 1000:
-                        upbit.buy_market_order("KRW-ENJ", krw*0.9995)
-                elif krw > 8000000:
-                    upbit.buy_market_order("KRW-ENJ", krw*0.5)
-                
+                if krw > 1000:
+                    upbit.buy_market_order("KRW-ENJ", krw*0.9995)
         else:
-            cre = get_balance("ENJ")
-            if cre > 1:
-                upbit.sell_market_order("KRW-ENJ", cre*0.9995)
+            enj = get_balance("ENJ")
+            if enj > 0.08:
+                upbit.sell_market_order("KRW-ENJ", enj*0.9995)
         time.sleep(10)
     except Exception as e:
-
-        
         print(e)
         time.sleep(10)
