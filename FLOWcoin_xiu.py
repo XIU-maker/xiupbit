@@ -44,16 +44,16 @@ while True:
 
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=39600):
-            target_price = get_target_price("KRW-TT", 0.6)
-            current_price = get_current_price("KRW-TT")
+            target_price = get_target_price("KRW-FLOW", 0.6)
+            current_price = get_current_price("KRW-FLOW")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 1000:
-                    upbit.buy_market_order("KRW-TT", krw*0.9995)
+                    upbit.buy_market_order("KRW-FLOW", krw*0.9995)
         else:
-            tt = get_balance("TT")
-            if tt > 0.008:
-                upbit.sell_market_order("KRW-TT", tt*0.9995)
+            flow = get_balance("FLOW")
+            if flow > 0.008:
+                upbit.sell_market_order("KRW-FLOW", flow*0.9995)
         time.sleep(5)
     except Exception as e:
         print(e)
