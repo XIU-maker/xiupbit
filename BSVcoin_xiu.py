@@ -47,16 +47,16 @@ while True:
             target_price = get_target_price("KRW-BSV", 0.6)
             current_price = get_current_price("KRW-BSV")
             # secret = 0
-            if target_price < current_price and bsv ==0:
+            if target_price < current_price and bsv < 0.0005:
                 krw = get_balance("KRW")
                 
                 if krw > 1000:
                     upbit.buy_market_order("KRW-BSV", krw*0.9995)
-        else:
-            # bsv = get_balance("bsv")
-            if bsv > 0.008:
-                upbit.sell_market_order("KRW-BSV", bsv*0.9995)
-        time.sleep(3)
+            else:
+                # bsv = get_balance("bsv")
+                if bsv > 0.008:
+                    upbit.sell_market_order("KRW-BSV", bsv*0.9995)
+            time.sleep(3)
     except Exception as e:
         print(e)
         time.sleep(3)
