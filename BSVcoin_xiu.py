@@ -43,7 +43,7 @@ while True:
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
         bsv = get_balance("bsv")
         # 9:00 < 현재 < #8:59:50
-        if start_time < now < end_time - datetime.timedelta(seconds=3600):
+        if start_time < now < end_time - datetime.timedelta(seconds=1800):
             target_price = get_target_price("KRW-BSV", 0.6)
             current_price = get_current_price("KRW-BSV")
             secret = 0
