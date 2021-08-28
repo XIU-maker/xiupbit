@@ -46,12 +46,13 @@ while True:
         if start_time < now < end_time - datetime.timedelta(seconds=900):
             target_price = get_target_price("KRW-BSV", 0.6)
             current_price = get_current_price("KRW-BSV")
-            # secret = 0
-            if target_price < current_price and bsv < 0.005:
+            num = 0
+            if target_price < current_price and num == 0:
                 krw = get_balance("KRW")
                 
                 if krw > 1000:
                     upbit.buy_market_order("KRW-BSV", krw*0.9995)
+                    num += 1
             else:
                 # bsv = get_balance("bsv")
                 if bsv > 0.008:
