@@ -41,13 +41,13 @@ while True:
         now = datetime.datetime.now()
         start_time = get_start_time("KRW-BTC") #9:00
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
-        
+        bsv = get_balance("bsv")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and bsv is None:
             target_price = get_target_price("KRW-BSV", 0.6)
             current_price = get_current_price("KRW-BSV")
             # bsv = 0
-            bsv = get_balance("bsv")
+            
             # num = 0
             if target_price < current_price:
                 krw = get_balance("KRW")
