@@ -60,7 +60,7 @@ while True:
             bsv = get_balance("BSV")
             if bsv > 0.008:
                 upbit.sell_market_order("KRW-BSV", bsv*0.9995)
-        time.sleep(18)
+        time.sleep(100)
     except Exception as e:
         print(e)
-        time.sleep(18)
+        time.sleep(100)
