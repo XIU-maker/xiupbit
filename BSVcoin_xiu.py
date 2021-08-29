@@ -55,7 +55,7 @@ while True:
                 if krw > 1000:
                     upbit.buy_market_order("KRW-BSV", krw*0.9995)
                     # num += 1
-        elif start_time < now < end_time - datetime.timedelta(seconds=3600) and bsv > 0.008:
+        elif start_time < now < end_time - datetime.timedelta(seconds=3600):
                 upbit.sell_market_order("KRW-BSV", bsv*0.995)
         time.sleep(3)
     except Exception as e:
