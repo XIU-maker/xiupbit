@@ -43,7 +43,7 @@ while True:
         end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
         bsv = get_balance("bsv")
         # 9:00 < 현재 < #8:59:50
-        if start_time < now < end_time - datetime.timedelta(seconds=3600) and bsv is None:
+        if bsv is None:
             target_price = get_target_price("KRW-BSV", 0.6)
             current_price = get_current_price("KRW-BSV")
             bsv = get_balance("bsv")
@@ -58,7 +58,7 @@ while True:
                     # num += 1
         else:
             bsv = get_balance("BSV")
-            if bsv > 0.0008:
+            if bsv > 0.008:
                 upbit.sell_market_order("KRW-FLOW", bsv*0.9995)
         time.sleep(3)
     except Exception as e:
