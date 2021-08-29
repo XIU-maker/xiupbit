@@ -44,7 +44,7 @@ while True:
         steem = get_balance("STEEM")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and steem is None:
-            target_price = get_target_price("KRW-STEEM", 0.58)
+            target_price = get_target_price("KRW-STEEM", 0.8)
             current_price = get_current_price("KRW-STEEM")
             steem = get_balance("STEEM")
             # bsv = 0
@@ -60,7 +60,7 @@ while True:
             steem = get_balance("STEEM")
             if steem > 0.008:
                 upbit.sell_market_order("KRW-STEEM", steem*0.9995)
-        time.sleep(158)
+        time.sleep(528)
     except Exception as e:
         print(e)
-        time.sleep(158)
+        time.sleep(528)

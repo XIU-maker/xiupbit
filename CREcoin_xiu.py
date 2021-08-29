@@ -44,7 +44,7 @@ while True:
         cre = get_balance("CRE")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and cre is None:
-            target_price = get_target_price("KRW-CRE", 0.58)
+            target_price = get_target_price("KRW-CRE", 0.8)
             current_price = get_current_price("KRW-CRE")
             cre = get_balance("CRE")
             # bsv = 0
@@ -60,7 +60,7 @@ while True:
             cre = get_balance("CRE")
             if cre > 0.008:
                 upbit.sell_market_order("KRW-CRE", cre*0.9995)
-        time.sleep(108)
+        time.sleep(518)
     except Exception as e:
         print(e)
-        time.sleep(108)
+        time.sleep(518)

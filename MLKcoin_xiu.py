@@ -44,7 +44,7 @@ while True:
         milk = get_balance("MILK")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and milk is None:
-            target_price = get_target_price("KRW-MILK", 0.58)
+            target_price = get_target_price("KRW-MILK", 0.8)
             current_price = get_current_price("KRW-MILK")
             milk = get_balance("MILK")
             # bsv = 0
@@ -60,7 +60,7 @@ while True:
             milk = get_balance("MILK")
             if milk > 0.008:
                 upbit.sell_market_order("KRW-MILK", milk*0.9995)
-        time.sleep(138)
+        time.sleep(538)
     except Exception as e:
         print(e)
-        time.sleep(138)
+        time.sleep(538)

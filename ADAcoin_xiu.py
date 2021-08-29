@@ -44,7 +44,7 @@ while True:
         ada = get_balance("ADA")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and ada is None:
-            target_price = get_target_price("KRW-ADA", 0.58)
+            target_price = get_target_price("KRW-ADA", 0.8)
             current_price = get_current_price("KRW-ADA")
             ADA = get_balance("ADA")
             # bsv = 0
@@ -60,7 +60,7 @@ while True:
             ada = get_balance("ADA")
             if ada > 0.008:
                 upbit.sell_market_order("KRW-ADA", ada*0.9995)
-        time.sleep(118)
+        time.sleep(518)
     except Exception as e:
         print(e)
-        time.sleep(118)
+        time.sleep(518)

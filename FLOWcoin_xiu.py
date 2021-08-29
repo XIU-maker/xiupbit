@@ -44,7 +44,7 @@ while True:
         flow = get_balance("FLOW")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and flow is None:
-            target_price = get_target_price("KRW-FLOW", 0.58)
+            target_price = get_target_price("KRW-FLOW", 0.8)
             current_price = get_current_price("KRW-FLOW")
             flow = get_balance("FLOW")
             # bsv = 0
@@ -60,7 +60,7 @@ while True:
             flow = get_balance("FLOW")
             if flow > 0.008:
                 upbit.sell_market_order("KRW-FLOW", flow*0.9995)
-        time.sleep(128)
+        time.sleep(528)
     except Exception as e:
         print(e)
-        time.sleep(128)
+        time.sleep(528)
