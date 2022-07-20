@@ -42,10 +42,12 @@ while True:
         now = datetime.datetime.now()
         start_time = get_start_time("KRW-BTC")
         end_time = start_time + datetime.timedelta(days=1)
-
-        if start_time < now < end_time - datetime.timedelta(seconds=10):
+        btc = get_balance("BTC")
+        
+        if start_time < now < end_time - datetime.timedelta(seconds=3600) and btc is None:
             target_price = get_target_price("KRW-BTC", 0.1)
             current_price = get_current_price("KRW-BTC")
+            btc = get_balance("BTC")
             if target_price < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
