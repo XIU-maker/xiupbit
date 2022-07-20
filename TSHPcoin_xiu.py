@@ -1,21 +1,17 @@
 import time
 import pyupbit
 import datetime
+import schedule
+from fbprophet import Prophet
 
-access = "IcQa6tEhx2B716i6Hwxy2Rl8t2rFRtlVNXhHwxns"
-secret = "hOixhxPXEK3UIvhWBvM5CTKLgeNvRhWrTeZiDzlN"
+access = "vqTw2OoiMI2JSP01nmU55W8vt1UPkhWMA3gEW5QS"
+secret = "spVx1FijHfWtmHjguh3zBanxYvpnm5k0PrsBec8K"
 
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
     target_price = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_price
-
-def get_target_row(ticker, r):
-    """변동성 돌파 전략으로 매수 목표가 조회"""
-    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_row = df.iloc[0]['close'] * r
-    return target_row
 
 def get_start_time(ticker):
     """시작 시간 조회"""
@@ -32,10 +28,32 @@ def get_balance(ticker):
                 return float(b['balance'])
             else:
                 return 0
+    return 0
 
 def get_current_price(ticker):
     """현재가 조회"""
-    return pyupbit.get_orderbook(tickers=ticker)[0]["orderbook_units"][0]["ask_price"]
+    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"]
+
+predicted_close_price = 0
+def predict_price(ticker):
+    """Prophet으로 당일 종가 가격 예측"""
+    global predicted_close_price
+    df = pyupbit.get_ohlcv(ticker, interval="minute60")
+    df = df.reset_index()
+    df['ds'] = df['index']
+    df['y'] = df['close']
+    data = df[['ds','y']]
+    model = Prophet()
+    model.fit(data)
+    future = model.make_future_dataframe(periods=24, freq='H')
+    forecast = model.predict(future)
+    closeDf = forecast[forecast['ds'] == forecast.iloc[-1]['ds'].replace(hour=9)]
+    if len(closeDf) == 0:
+        closeDf = forecast[forecast['ds'] == data.iloc[-1]['ds'].replace(hour=9)]
+    closeValue = closeDf['yhat'].values[0]
+    predicted_close_price = closeValue
+predict_price("KRW-BTC")
+schedule.every().hour.do(lambda: predict_price("KRW-BTC"))
 
 # 로그인
 upbit = pyupbit.Upbit(access, secret)
@@ -45,34 +63,22 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-TSHP") #9:00
-        end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
+        start_time = get_start_time("KRW-BTC")
+        end_time = start_time + datetime.timedelta(days=1)
+        schedule.run_pending()
 
-        # 9:00 < 현재 < #8:00:00
-        if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-TSHP", 0.5)
-            target_row1 = get_target_row("KRW-TSHP", 0.82)
-            target_row2 = get_target_row("KRW-TSHP", 0.72)
-            current_price = get_current_price("KRW-TSHP")
-            if target_price < current_price:
+        if start_time < now < end_time - datetime.timedelta(seconds=10):
+            target_price = get_target_price("KRW-BTC", 0.5)
+            current_price = get_current_price("KRW-BTC")
+            if target_price < current_price and current_price < predicted_close_price:
                 krw = get_balance("KRW")
-                if krw > 8000000:
-                    upbit.buy_market_order("KRW-TSHP", krw*0.69)
-            elif target_row1 > current_price:
-                krw = get_balance("KRW")
-                if target_row2 > current_price:
-                    if krw > 1000:
-                        upbit.buy_market_order("KRW-TSHP", krw*0.9995)
-                elif krw > 8000000:
-                    upbit.buy_market_order("KRW-TSHP", krw*0.5)
-                
+                if krw > 5000:
+                    upbit.buy_market_order("KRW-BTC", krw*0.9995)
         else:
-            tshp = get_balance("TSHP")
-            if tshp > 0.00009:
-                upbit.sell_market_order("KRW-TSHP", tshp*0.9995)
-        time.sleep(10)
+            btc = get_balance("BTC")
+            if btc > 0.00008:
+                upbit.sell_market_order("KRW-BTC", btc*0.9995)
+        time.sleep(1)
     except Exception as e:
-
-        
         print(e)
-        time.sleep(10)
+        time.sleep(1)
