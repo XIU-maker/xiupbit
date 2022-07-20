@@ -44,7 +44,7 @@ while True:
         doge = get_balance("DOGE")
         # 9:00 < 현재 < #8:59:50
         if start_time < now < end_time - datetime.timedelta(seconds=3600) and doge is None:
-            target_price = get_target_price("KRW-DOGE", 0.8)
+            target_price = get_target_price("KRW-DOGE", 0.3)
             current_price = get_current_price("KRW-DOGE")
             doge = get_balance("DOGE")
             # bsv = 0
