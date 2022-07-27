@@ -40,28 +40,28 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-SBD")
+        start_time = get_start_time("KRW-STORJ")
         end_time = start_time + datetime.timedelta(days=1)
-        # sbd = get_balance("sbd")
+        # STORJ = get_balance("STORJ")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-SBD", 0.5)
-            target_high = get_target_price("KRW-SBD", 1.2)
-            current_price = get_current_price("KRW-SBD")
-            sbd = get_balance("SBD")
-            if target_price < current_price and sbd == 0:
+            target_price = get_target_price("KRW-STORJ", 0.5)
+            target_high = get_target_price("KRW-STORJ", 1.2)
+            current_price = get_current_price("KRW-STORJ")
+            storj = get_balance("STORJ")
+            if target_price < current_price and storj == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-SBD", krw*0.9995)
+                    upbit.buy_market_order("KRW-STORJ", krw*0.9995)
             else:
-                sbd = get_balance("SBD")
-                if target_high < current_price and sbd > 100:
-                    upbit.sell_market_order("KRW-SBD", sbd*0.9995)
+                storj = get_balance("STORJ")
+                if target_high < current_price and storj > 100:
+                    upbit.sell_market_order("KRW-STORJ", storj*0.9995)
                 
         else:
-            sbd = get_balance("SBD")
-            if sbd > 0.00008:
-                upbit.sell_market_order("KRW-SBD", sbd*0.9995)
+            storj = get_balance("STORJ")
+            if storj > 0.00008:
+                upbit.sell_market_order("KRW-STORJ", storj*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)
