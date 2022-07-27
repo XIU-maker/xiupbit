@@ -45,8 +45,8 @@ while True:
         # xem = get_balance("XEM")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-XEM", 0.01)
-            target_high = get_target_price("KRW-XEM", 0.015)
+            target_price = get_target_price("KRW-XEM", 0.06)
+            target_high = get_target_price("KRW-XEM", 0.1)
             current_price = get_current_price("KRW-XEM")
             xem = get_balance("XEM")
             if target_price < current_price and xem == 0:
@@ -55,13 +55,13 @@ while True:
                     upbit.buy_market_order("KRW-XEM", krw*0.9995)
             else:
                 xem = get_balance("XEM")
-                if target_high < current_price and xem > 0.0002:
+                if target_high < current_price and xem > 100:
                     upbit.sell_market_order("KRW-XEM", xem*0.9995)
                 
 
         else:
             xem = get_balance("XEM")
-            if xem > 0.00008:
+            if xem > 0.8:
                 upbit.sell_market_order("KRW-XEM", xem*0.9995)
         time.sleep(18)
     except Exception as e:
