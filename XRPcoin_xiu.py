@@ -45,13 +45,20 @@ while True:
         # xrp = get_balance("xrp")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-XRP", 0.6)
+            target_price = get_target_price("KRW-XRP", 0.5)
+            target_high = get_target_price("KRW-XRP", 1.2)
             current_price = get_current_price("KRW-XRP")
             xrp = get_balance("XRP")
             if target_price < current_price and xrp == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-XRP", krw*0.9995)
+            else:
+                xrp = get_balance("XRP")
+                if target_high < current_price and xrp > 100:
+                    upbit.sell_market_order("KRW-XRP", xrp*0.9995)
+                
+
         else:
             xrp = get_balance("XRP")
             if xrp > 0.00008:
