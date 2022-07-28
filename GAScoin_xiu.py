@@ -53,7 +53,7 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-GAS", krw*0.9995)
-            elif target_high < current_price and gas > 0.1:
+            elif target_high < current_price and gas > 2:
                  upbit.sell_market_order("KRW-GAS", gas*0.9995)
                 
         else:
