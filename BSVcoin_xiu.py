@@ -45,18 +45,16 @@ while True:
         # bsv = get_balance("bsv")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-BSV", 0.5)
-            target_high = get_target_price("KRW-BSV", 1.2)
+            target_price = get_target_price("KRW-BSV", 0.3)
+            target_high = get_target_price("KRW-BSV", 0.5)
             current_price = get_current_price("KRW-BSV")
             bsv = get_balance("BSV")
             if target_price < current_price and bsv == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-BSV", krw*0.9995)
-            else:
-                bsv = get_balance("BSV")
-                if target_high < current_price and bsv > 100:
-                    upbit.sell_market_order("KRW-BSV", bsv*0.9995)
+            elif target_high < current_price and bsv > 0.1:
+                 upbit.sell_market_order("KRW-BSV", bsv*0.9995)
         
         else:
             bsv = get_balance("BSV")
