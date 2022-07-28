@@ -53,10 +53,8 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-HUM", krw*0.9995)
-            else:
-                hum = get_balance("HUM")
-                if target_high < current_price and hum > 100:
-                    upbit.sell_market_order("KRW-HUM", hum*0.9995)
+            elif target_high < current_price and hum > 30:
+                 upbit.sell_market_order("KRW-HUM", hum*0.9995)
                 
         else:
             hum = get_balance("HUM")
