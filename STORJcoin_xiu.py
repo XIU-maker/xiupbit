@@ -53,10 +53,8 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-STORJ", krw*0.9995)
-            else:
-                storj = get_balance("STORJ")
-                if target_high < current_price and storj > 100:
-                    upbit.sell_market_order("KRW-STORJ", storj*0.9995)
+            elif target_high < current_price and storj > 8:
+                 upbit.sell_market_order("KRW-STORJ", storj*0.9995)
                 
         else:
             storj = get_balance("STORJ")
