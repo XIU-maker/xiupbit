@@ -53,10 +53,8 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-ANKR", krw*0.9995)
-            else:
-                snkr = get_balance("ANKR")
-                if target_high < current_price and ankr > 100:
-                    upbit.sell_market_order("KRW-ANKR", ankr*0.9995)
+            elif target_high < current_price and ankr > 200:
+                 upbit.sell_market_order("KRW-ANKR", ankr*0.9995)
                 
         else:
             ankr = get_balance("ANKR")
