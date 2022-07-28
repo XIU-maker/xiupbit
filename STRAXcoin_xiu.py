@@ -53,10 +53,8 @@ while True:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     upbit.buy_market_order("KRW-STRAX", krw*0.9995)
-            else:
-                strax = get_balance("STRAX")
-                if target_high < current_price and strax > 100:
-                    upbit.sell_market_order("KRW-STRAX", strax*0.9995)
+            elif target_high < current_price and strax > 8:
+                 upbit.sell_market_order("KRW-STRAX", strax*0.9995)
         else:
             strax = get_balance("STRAX")
             if strax > 0.00008:
