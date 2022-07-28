@@ -45,8 +45,8 @@ while True:
         # bsv = get_balance("bsv")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-BSV", 0.3)
-            target_high = get_target_price("KRW-BSV", 0.5)
+            target_price = get_target_price("KRW-BSV", 0.5)
+            target_high = get_target_price("KRW-BSV", 1.2)
             current_price = get_current_price("KRW-BSV")
             bsv = get_balance("BSV")
             if target_price < current_price and bsv == 0:
