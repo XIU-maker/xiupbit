@@ -46,7 +46,7 @@ while True:
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-HUM", 0.5)
-            target_high = get_target_price("KRW-HUM", 1.0)
+            target_high = get_target_price("KRW-HUM", 0.8)
             current_price = get_current_price("KRW-HUM")
             hum = get_balance("HUM")
             if target_price < current_price and hum == 0:
