@@ -45,8 +45,8 @@ while True:
         # STORJ = get_balance("STORJ")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-STORJ", 0.5)
-            target_high = get_target_price("KRW-STORJ", 0.8)
+            target_price = get_target_price("KRW-STORJ", 0.35)
+            target_high = get_target_price("KRW-STORJ", 0.55)
             current_price = get_current_price("KRW-STORJ")
             storj = get_balance("STORJ")
             if target_price < current_price and storj == 0:
