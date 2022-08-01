@@ -45,8 +45,8 @@ while True:
         # rfr = get_balance("RFR")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-RFR", 0.5)
-            target_high = get_target_price("KRW-RFR", 1.0)
+            target_price = get_target_price("KRW-RFR", 0.8)
+            target_high = get_target_price("KRW-RFR", 1.5)
             current_price = get_current_price("KRW-RFR")
             rfr = get_balance("RFR")
             if target_price < current_price and rfr == 0:
