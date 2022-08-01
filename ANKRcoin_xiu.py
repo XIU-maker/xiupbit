@@ -45,8 +45,8 @@ while True:
         # ankr = get_balance("ankr")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-ANKR", 0.8)
-            target_high = get_target_price("KRW-ANKR", 1.5)
+            target_price = get_target_price("KRW-ANKR", 0.5)
+            target_high = get_target_price("KRW-ANKR", 0.8)
             current_price = get_current_price("KRW-ANKR")
             ankr = get_balance("ANKR")
             if target_price < current_price and ankr == 0:
