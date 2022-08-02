@@ -45,8 +45,8 @@ while True:
         # xem = get_balance("XEM")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-XEM", 0.4)
-            target_high = get_target_price("KRW-XEM", 0.6)
+            target_price = get_target_price("KRW-XEM", 0.38)
+            target_high = get_target_price("KRW-XEM", 0.53)
             current_price = get_current_price("KRW-XEM")
             xem = get_balance("XEM")
             if target_price < current_price and xem == 0:
