@@ -45,8 +45,8 @@ while True:
         # gas = get_balance("gas")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-GAS", 0.5)
-            target_high = get_target_price("KRW-GAS", 0.8)
+            target_price = get_target_price("KRW-GAS", 0.4)
+            target_high = get_target_price("KRW-GAS", 0.6)
             current_price = get_current_price("KRW-GAS")
             gas = get_balance("GAS")
             if target_price < current_price and gas == 0:
