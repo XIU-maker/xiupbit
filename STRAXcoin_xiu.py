@@ -45,8 +45,8 @@ while True:
         # STRAX = get_balance("STRAX")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-STRAX", 0.5)
-            target_high = get_target_price("KRW-STRAX", 1.0)
+            target_price = get_target_price("KRW-STRAX", 0.4)
+            target_high = get_target_price("KRW-STRAX", 0.65)
             current_price = get_current_price("KRW-STRAX")
             strax = get_balance("STRAX")
             if target_price < current_price and strax == 0:
