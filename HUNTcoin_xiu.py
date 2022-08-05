@@ -45,7 +45,7 @@ while True:
         # HUNT = get_balance("HUNT")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-HUNT", 0.38)
+            target_price = get_target_price("KRW-HUNT", 0.36)
             target_high = get_target_price("KRW-HUNT", 0.53)
             current_price = get_current_price("KRW-HUNT")
             hunt = get_balance("HUNT")
