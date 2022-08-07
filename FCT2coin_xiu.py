@@ -57,10 +57,10 @@ while True:
                  upbit.sell_market_order("KRW-FCT2", fct2*0.9995)
                 
 
-        else:
-            fct2 = get_balance("FCT2")
-            if fct2 > 0.8:
-                upbit.sell_market_order("KRW-FCT2", fct2*0.9995)
+        # else:
+        #     fct2 = get_balance("FCT2")
+        #     if fct2 > 0.8:
+        #         upbit.sell_market_order("KRW-FCT2", fct2*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)
