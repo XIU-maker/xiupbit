@@ -40,26 +40,24 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-HIVE")
+        start_time = get_start_time("KRW-CELO")
         end_time = start_time + datetime.timedelta(days=1)
-        # hive = get_balance("HIVE")
+        # celo = get_balance("CELO")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-HIVE", 0.36)
-            target_high = get_target_price("KRW-HIVE", 0.53)
-            current_price = get_current_price("KRW-HIVE")
-            hive = get_balance("HIVE")
-            if target_price < current_price and hive == 0:
+            target_price = get_target_price("KRW-CELO", 0.36)
+            target_high = get_target_price("KRW-CELO", 0.53)
+            current_price = get_current_price("KRW-CELO")
+            celo = get_balance("CELO")
+            if target_price < current_price and celo == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-HIVE", krw*0.9995)
-            elif target_high < current_price and hive > 6:
-                 upbit.sell_market_order("KRW-HIVE", hive*0.9995)
+                    upbit.buy_market_order("KRW-CELO", krw*0.9995)
+            elif target_high < current_price and celo > 3.8:
+                 upbit.sell_market_order("KRW-CELO", celo*0.9995)
         else:
             pass
-            # hive = get_balance("HIVE")
-            # if hive > 0.00008:
-            #     upbit.sell_market_order("KRW-HIVE", hive*0.9995)
+
         time.sleep(18)
     except Exception as e:
         print(e)
