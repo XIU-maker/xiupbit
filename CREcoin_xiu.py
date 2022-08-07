@@ -58,9 +58,10 @@ while True:
                 
 
         else:
-            cre = get_balance("CRE")
-            if cre > 0.8:
-                upbit.sell_market_order("KRW-CRE", cre*0.9995)
+            pass
+            # cre = get_balance("CRE")
+            # if cre > 0.8:
+            #     upbit.sell_market_order("KRW-CRE", cre*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

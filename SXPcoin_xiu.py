@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and sxp > 6:
                  upbit.sell_market_order("KRW-SXP", sxp*0.9995)
         else:
-            sxp = get_balance("SXP")
-            if sxp > 0.00008:
-                upbit.sell_market_order("KRW-SXP", sxp*0.9995)
+            pass
+            # sxp = get_balance("SXP")
+            # if sxp > 0.00008:
+            #     upbit.sell_market_order("KRW-SXP", sxp*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

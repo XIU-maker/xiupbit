@@ -58,9 +58,10 @@ while True:
                 
 
         else:
-            tfuel = get_balance("TFUEL")
-            if tfuel > 0.8:
-                upbit.sell_market_order("KRW-TFUEL", tfuel*0.9995)
+            pass
+            # tfuel = get_balance("TFUEL")
+            # if tfuel > 0.8:
+            #     upbit.sell_market_order("KRW-TFUEL", tfuel*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

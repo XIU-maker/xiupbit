@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and hunt > 6:
                  upbit.sell_market_order("KRW-HUNT", hunt*0.9995)
         else:
-            hunt = get_balance("HUNT")
-            if hunt > 0.00008:
-                upbit.sell_market_order("KRW-HUNT", hunt*0.9995)
+            pass
+            # hunt = get_balance("HUNT")
+            # if hunt > 0.00008:
+            #     upbit.sell_market_order("KRW-HUNT", hunt*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

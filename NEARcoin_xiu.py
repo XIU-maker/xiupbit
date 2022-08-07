@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and near > 0.9:
                  upbit.sell_market_order("KRW-NEAR", near*0.9995)
         else:
-            near = get_balance("NEAR")
-            if near > 0.00008:
-                upbit.sell_market_order("KRW-NEAR", near*0.9995)
+            pass
+            # near = get_balance("NEAR")
+            # if near > 0.00008:
+            #     upbit.sell_market_order("KRW-NEAR", near*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

@@ -45,8 +45,8 @@ while True:
         # ankr = get_balance("ankr")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-ANKR", 0.4)
-            target_high = get_target_price("KRW-ANKR", 0.6)
+            target_price = get_target_price("KRW-ANKR", 0.36)
+            target_high = get_target_price("KRW-ANKR", 0.53)
             current_price = get_current_price("KRW-ANKR")
             ankr = get_balance("ANKR")
             if target_price < current_price and ankr == 0:
@@ -57,9 +57,10 @@ while True:
                  upbit.sell_market_order("KRW-ANKR", ankr*0.9995)
                 
         else:
-            ankr = get_balance("ANKR")
-            if ankr > 0.00008:
-                upbit.sell_market_order("KRW-ANKR", ankr*0.9995)
+            pass
+            # ankr = get_balance("ANKR")
+            # if ankr > 0.00008:
+            #     upbit.sell_market_order("KRW-ANKR", ankr*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

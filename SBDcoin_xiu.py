@@ -45,8 +45,8 @@ while True:
         # sbd = get_balance("sbd")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-SBD", 0.4)
-            target_high = get_target_price("KRW-SBD", 0.6)
+            target_price = get_target_price("KRW-SBD", 0.36)
+            target_high = get_target_price("KRW-SBD", 0.53)
             current_price = get_current_price("KRW-SBD")
             sbd = get_balance("SBD")
             if target_price < current_price and sbd == 0:
@@ -57,9 +57,10 @@ while True:
                  upbit.sell_market_order("KRW-SBD", sbd*0.9995)
                 
         else:
-            sbd = get_balance("SBD")
-            if sbd > 0.00008:
-                upbit.sell_market_order("KRW-SBD", sbd*0.9995)
+            pass
+            # sbd = get_balance("SBD")
+            # if sbd > 0.00008:
+            #     upbit.sell_market_order("KRW-SBD", sbd*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

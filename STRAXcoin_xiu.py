@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and strax > 8:
                  upbit.sell_market_order("KRW-STRAX", strax*0.9995)
         else:
-            strax = get_balance("STRAX")
-            if strax > 0.00008:
-                upbit.sell_market_order("KRW-STRAX", strax*0.9995)
+            pass
+            # strax = get_balance("STRAX")
+            # if strax > 0.00008:
+            #     upbit.sell_market_order("KRW-STRAX", strax*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

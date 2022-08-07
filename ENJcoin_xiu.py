@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and enj > 6:
                  upbit.sell_market_order("KRW-ENJ", enj*0.9995)
         else:
-            enj = get_balance("ENJ")
-            if enj > 0.00008:
-                upbit.sell_market_order("KRW-ENJ", enj*0.9995)
+            pass
+            # enj = get_balance("ENJ")
+            # if enj > 0.00008:
+            #     upbit.sell_market_order("KRW-ENJ", enj*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

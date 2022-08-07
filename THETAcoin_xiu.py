@@ -56,9 +56,10 @@ while True:
             elif target_high < current_price and theta > 2.5:
                  upbit.sell_market_order("KRW-THETA", theta*0.9995)
         else:
-            theta = get_balance("THETA")
-            if theta > 0.00008:
-                upbit.sell_market_order("KRW-THETA", theta*0.9995)
+            pass
+            # theta = get_balance("THETA")
+            # if theta > 0.00008:
+            #     upbit.sell_market_order("KRW-THETA", theta*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

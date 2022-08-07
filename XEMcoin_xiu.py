@@ -58,9 +58,10 @@ while True:
                 
 
         else:
-            xem = get_balance("XEM")
-            if xem > 0.8:
-                upbit.sell_market_order("KRW-XEM", xem*0.9995)
+            pass
+            # xem = get_balance("XEM")
+            # if xem > 0.8:
+            #     upbit.sell_market_order("KRW-XEM", xem*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

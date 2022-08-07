@@ -57,9 +57,10 @@ while True:
                  upbit.sell_market_order("KRW-STPT", stpt*0.9995)
                 
         else:
-            stpt = get_balance("STPT")
-            if stpt > 0.8:
-                upbit.sell_market_order("KRW-STPT", stpt*0.9995)
+            pass
+            # stpt = get_balance("STPT")
+            # if stpt > 0.8:
+            #     upbit.sell_market_order("KRW-STPT", stpt*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

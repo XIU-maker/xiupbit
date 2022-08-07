@@ -58,9 +58,10 @@ while True:
                 
 
         else:
-            rfr = get_balance("RFR")
-            if rfr > 0.8:
-                upbit.sell_market_order("KRW-RFR", rfr*0.9995)
+            pass
+            # rfr = get_balance("RFR")
+            # if rfr > 0.8:
+            #     upbit.sell_market_order("KRW-RFR", rfr*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

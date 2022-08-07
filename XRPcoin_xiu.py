@@ -46,7 +46,7 @@ while True:
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
             target_price = get_target_price("KRW-XRP", 0.5)
-            target_high = get_target_price("KRW-XRP", 0.8)
+            target_high = get_target_price("KRW-XRP", 1.0)
             current_price = get_current_price("KRW-XRP")
             xrp = get_balance("XRP")
             if target_price < current_price and xrp == 0:

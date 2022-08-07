@@ -58,9 +58,10 @@ while True:
                 
 
         else:
-            dka = get_balance("DKA")
-            if dka > 0.8:
-                upbit.sell_market_order("KRW-DKA", dka*0.9995)
+            pass
+            # dka = get_balance("DKA")
+            # if dka > 0.8:
+            #     upbit.sell_market_order("KRW-DKA", dka*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

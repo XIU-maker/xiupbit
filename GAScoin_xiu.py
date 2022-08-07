@@ -57,9 +57,10 @@ while True:
                  upbit.sell_market_order("KRW-GAS", gas*0.9995)
                 
         else:
-            gas = get_balance("GAS")
-            if gas > 0.00008:
-                upbit.sell_market_order("KRW-GAS", gas*0.9995)
+            pass
+            # gas = get_balance("GAS")
+            # if gas > 0.00008:
+            #     upbit.sell_market_order("KRW-GAS", gas*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)
