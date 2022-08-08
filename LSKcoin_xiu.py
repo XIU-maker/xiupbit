@@ -58,7 +58,7 @@ while True:
         else:
             pass
 
-        time.sleep(18)
+        time.sleep(9)
     except Exception as e:
         print(e)
-        time.sleep(18)
+        time.sleep(9)
