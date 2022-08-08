@@ -40,26 +40,24 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-ENJ")
+        start_time = get_start_time("KRW-DAWN")
         end_time = start_time + datetime.timedelta(days=1)
-        # ENJ = get_balance("ENJ")
+        # dawn = get_balance("DAWN")
         
         if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-ENJ", 0.36)
-            target_high = get_target_price("KRW-ENJ", 0.53)
-            current_price = get_current_price("KRW-ENJ")
-            enj = get_balance("ENJ")
-            if target_price < current_price and enj == 0:
+            target_price = get_target_price("KRW-DAWN", 0.36)
+            target_high = get_target_price("KRW-DAWN", 0.53)
+            current_price = get_current_price("KRW-DAWN")
+            dawn = get_balance("DAWN")
+            if target_price < current_price and dawn == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-ENJ", krw*0.9995)
-            elif target_high < current_price and enj > 6:
-                 upbit.sell_market_order("KRW-ENJ", enj*0.9995)
+                    upbit.buy_market_order("KRW-DAWN", krw*0.9995)
+            elif target_high < current_price and dawn > 3.8:
+                 upbit.sell_market_order("KRW-DAWN", dawn*0.9995)
         else:
             pass
-            # enj = get_balance("ENJ")
-            # if enj > 0.00008:
-            #     upbit.sell_market_order("KRW-ENJ", enj*0.9995)
+
         time.sleep(9)
     except Exception as e:
         print(e)
