@@ -61,7 +61,7 @@ while True:
             # storj = get_balance("STORJ")
             # if storj > 0.008:
             #     upbit.sell_market_order("KRW-STORJ", storj*0.9995)
-        time.sleep(18)
+        time.sleep(9)
     except Exception as e:
         print(e)
-        time.sleep(18)
+        time.sleep(9)

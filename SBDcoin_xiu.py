@@ -61,7 +61,7 @@ while True:
             # sbd = get_balance("SBD")
             # if sbd > 0.00008:
             #     upbit.sell_market_order("KRW-SBD", sbd*0.9995)
-        time.sleep(18)
+        time.sleep(9)
     except Exception as e:
         print(e)
-        time.sleep(18)
+        time.sleep(9)
