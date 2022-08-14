@@ -41,12 +41,14 @@ while True:
     try:
         now = datetime.datetime.now()
         start_time = get_start_time("KRW-TT")
-        end_time = start_time + datetime.timedelta(days=1)
+        # end_time = start_time + datetime.timedelta(days=1)
+        end_time = start_time + datetime.timedelta(seconds=1080)
         # tt = get_balance("TT")
         
-        if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-TT", 0.36)
-            target_high = get_target_price("KRW-TT", 0.53)
+        # if start_time < now < end_time - datetime.timedelta(seconds=3600):
+        if start_time < now < end_time:  
+            target_price = get_target_price("KRW-TT", 0.14)
+            target_high = get_target_price("KRW-TT", 0.375)
             current_price = get_current_price("KRW-TT")
             tt = get_balance("TT")
             if target_price < current_price and tt == 0:
@@ -58,10 +60,10 @@ while True:
                 
 
         else:
-            pass
-            # tt = get_balance("TT")
-            # if tt > 0.8:
-            #     upbit.sell_market_order("KRW-TT", tt*0.9995)
+            # pass
+            tt = get_balance("TT")
+            if tt > 0.8:
+                upbit.sell_market_order("KRW-TT", tt*0.9995)
         time.sleep(18)
     except Exception as e:
         print(e)

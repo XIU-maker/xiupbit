@@ -40,31 +40,31 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-DKA")
+        start_time = get_start_time("KRW-TRX")
         # end_time = start_time + datetime.timedelta(days=1)
         end_time = start_time + datetime.timedelta(seconds=1080)
-        # dka = get_balance("DKA")
+        # trx = get_balance("TRX")
         
         # if start_time < now < end_time - datetime.timedelta(seconds=3600):
-        if start_time < now < end_time:  
-            target_price = get_target_price("KRW-DKA", 0.12)
-            target_high = get_target_price("KRW-DKA", 0.41)
-            current_price = get_current_price("KRW-DKA")
-            dka = get_balance("DKA")
-            if target_price < current_price and dka == 0:
+        if start_time < now < end_time:   
+            target_price = get_target_price("KRW-TRX", 0.125)
+            target_high = get_target_price("KRW-TRX", 0.5625)
+            current_price = get_current_price("KRW-TRX")
+            trx = get_balance("TRX")
+            if target_price < current_price and trx == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-DKA", krw*0.9995)
-            elif target_high < current_price and dka > 100:
-                 upbit.sell_market_order("KRW-DKA", dka*0.9995)
+                    upbit.buy_market_order("KRW-TRX", krw*0.9995)
+            elif target_high < current_price and trx > 100:
+                 upbit.sell_market_order("KRW-TRX", trx*0.9995)
                 
 
         else:
             # pass
-            dka = get_balance("DKA")
-            if dka > 0.08:
-                upbit.sell_market_order("KRW-DKA", dka*0.9995)
-        time.sleep(9)
+            trx = get_balance("TRX")
+            if trx > 0.08:
+                upbit.sell_market_order("KRW-TRX", trx*0.9995)
+        time.sleep(18)
     except Exception as e:
         print(e)
-        time.sleep(9)
+        time.sleep(18)
