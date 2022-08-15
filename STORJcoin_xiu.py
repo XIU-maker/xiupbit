@@ -41,12 +41,14 @@ while True:
     try:
         now = datetime.datetime.now()
         start_time = get_start_time("KRW-STORJ")
-        end_time = start_time + datetime.timedelta(days=1)
-        # STORJ = get_balance("STORJ")
+        # end_time = start_time + datetime.timedelta(days=1)
+        end_time = start_time + datetime.timedelta(seconds=480)
+        # storj = get_balance("STORJ")
         
-        if start_time < now < end_time - datetime.timedelta(seconds=3600):
-            target_price = get_target_price("KRW-STORJ", 0.36)
-            target_high = get_target_price("KRW-STORJ", 0.53)
+        # if start_time < now < end_time - datetime.timedelta(seconds=3600):
+        if start_time < now < end_time:    
+            target_price = get_target_price("KRW-STORJ", 0.027397)
+            target_high = get_target_price("KRW-STORJ", 0.301370)
             current_price = get_current_price("KRW-STORJ")
             storj = get_balance("STORJ")
             if target_price < current_price and storj == 0:
@@ -57,10 +59,10 @@ while True:
                  upbit.sell_market_order("KRW-STORJ", storj*0.9995)
                 
         else:
-            pass
-            # storj = get_balance("STORJ")
-            # if storj > 0.008:
-            #     upbit.sell_market_order("KRW-STORJ", storj*0.9995)
+            # pass
+            storj = get_balance("STORJ")
+            if storj > 0.008:
+                upbit.sell_market_order("KRW-STORJ", storj*0.9995)
         time.sleep(9)
     except Exception as e:
         print(e)

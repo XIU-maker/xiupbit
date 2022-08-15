@@ -40,28 +40,28 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-POWR")
+        start_time = get_start_time("KRW-STMX")
         # end_time = start_time + datetime.timedelta(days=1)
         end_time = start_time + datetime.timedelta(seconds=480)
-        # powr = get_balance("POWR")
+        # stmx = get_balance("STMX")
         
         # if start_time < now < end_time - datetime.timedelta(seconds=3600):
         if start_time < now < end_time:    
-            target_price = get_target_price("KRW-POWR", 0.064516)
-            target_high = get_target_price("KRW-POWR", 0.258065)
-            current_price = get_current_price("KRW-POWR")
-            powr = get_balance("POWR")
-            if target_price < current_price and powr == 0:
+            target_price = get_target_price("KRW-STMX", 0.010)
+            target_high = get_target_price("KRW-STMX", 0.105)
+            current_price = get_current_price("KRW-STMX")
+            stmx = get_balance("STMX")
+            if target_price < current_price and stmx == 0:
                 krw = get_balance("KRW")
                 if krw > 5000:
-                    upbit.buy_market_order("KRW-POWR", krw*0.9995)
-            elif target_high < current_price and powr > 13:
-                 upbit.sell_market_order("KRW-POWR", powr*0.9995)
+                    upbit.buy_market_order("KRW-STMX", krw*0.9995)
+            elif target_high < current_price and stmx > 380:
+                 upbit.sell_market_order("KRW-STMX", stmx*0.9995)
         else:
             # pass
-            powr = get_balance("POWR")
-            if powr > 0.008:
-                upbit.sell_market_order("KRW-POWR", powr*0.9995)
+            stmx = get_balance("STMX")
+            if stmx > 0.8:
+                upbit.sell_market_order("KRW-STMX", stmx*0.9995)
         time.sleep(9)
     except Exception as e:
         print(e)
