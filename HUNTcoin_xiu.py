@@ -47,8 +47,8 @@ while True:
         
         # if start_time < now < end_time - datetime.timedelta(seconds=3600):
         if start_time < now < end_time:    
-            target_price = get_target_price("KRW-HUNT", 0.23)
-            target_high = get_target_price("KRW-HUNT", 0.68)
+            target_price = get_target_price("KRW-HUNT", 0.25)
+            target_high = get_target_price("KRW-HUNT", 1.95)
             current_price = get_current_price("KRW-HUNT")
             hunt = get_balance("HUNT")
             if target_price < current_price and hunt == 0:
@@ -62,7 +62,7 @@ while True:
             hunt = get_balance("HUNT")
             if hunt > 0.008:
                 upbit.sell_market_order("KRW-HUNT", hunt*0.9995)
-        time.sleep(18)
+        time.sleep(9)
     except Exception as e:
         print(e)
-        time.sleep(18)
+        time.sleep(9)

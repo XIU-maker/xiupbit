@@ -2,8 +2,8 @@ import time
 import pyupbit
 import datetime
 
-access = "IcQa6tEhx2B716i6Hwxy2Rl8t2rFRtlVNXhHwxns"
-secret = "hOixhxPXEK3UIvhWBvM5CTKLgeNvRhWrTeZiDzlN"
+access = "vqTw2OoiMI2JSP01nmU55W8vt1UPkhWMA3gEW5QS"
+secret = "spVx1FijHfWtmHjguh3zBanxYvpnm5k0PrsBec8K"
 
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
@@ -26,10 +26,11 @@ def get_balance(ticker):
                 return float(b['balance'])
             else:
                 return 0
+    return 0
 
 def get_current_price(ticker):
     """현재가 조회"""
-    return pyupbit.get_orderbook(tickers=ticker)[0]["orderbook_units"][0]["ask_price"]
+    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"]
 
 # 로그인
 upbit = pyupbit.Upbit(access, secret)
@@ -39,28 +40,29 @@ print("autotrade start")
 while True:
     try:
         now = datetime.datetime.now()
-        start_time = get_start_time("KRW-BTC") #9:00
-        end_time = start_time + datetime.timedelta(days=1) #9:00 + 1일
-        ong = get_balance("ONG")
-        # 9:00 < 현재 < #8:59:50
-        if start_time < now < end_time - datetime.timedelta(seconds=3600) and ong is None:
-            target_price = get_target_price("KRW-ONG", 0.58)
+        start_time = get_start_time("KRW-ONG")
+        # end_time = start_time + datetime.timedelta(days=1)
+        end_time = start_time + datetime.timedelta(seconds=480)
+        # ong = get_balance("ONG")
+        
+        # if start_time < now < end_time - datetime.timedelta(seconds=3600):
+        if start_time < now < end_time:    
+            target_price = get_target_price("KRW-ONG", 0.091954)
+            target_high = get_target_price("KRW-ONG", 0.574713)
             current_price = get_current_price("KRW-ONG")
             ong = get_balance("ONG")
-            # bsv = 0
-            
-            # num = 0
-            if target_price < current_price:
+            if target_price < current_price and ong == 0:
                 krw = get_balance("KRW")
-                
-                if krw > 1000:
+                if krw > 5000:
                     upbit.buy_market_order("KRW-ONG", krw*0.9995)
-                    # num += 1
+            elif target_high < current_price and ong > 9:
+                 upbit.sell_market_order("KRW-ONG", ong*0.9995)
         else:
+            # pass
             ong = get_balance("ONG")
             if ong > 0.008:
                 upbit.sell_market_order("KRW-ONG", ong*0.9995)
-        time.sleep(128)
+        time.sleep(9)
     except Exception as e:
         print(e)
-        time.sleep(128)
+        time.sleep(9)

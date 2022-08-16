@@ -47,8 +47,8 @@ while True:
         
         # if start_time < now < end_time - datetime.timedelta(seconds=3600):
         if start_time < now < end_time:    
-            target_price = get_target_price("KRW-PUNDIX", 0.095652)
-            target_high = get_target_price("KRW-PUNDIX", 0.234783)
+            target_price = get_target_price("KRW-PUNDIX", 0.244898)
+            target_high = get_target_price("KRW-PUNDIX", 1.510204)
             current_price = get_current_price("KRW-PUNDIX")
             pundix = get_balance("PUNDIX")
             if target_price < current_price and pundix == 0:
